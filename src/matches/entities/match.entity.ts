@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { MatchStatus } from '../enums/match-status.enum';
 
 @Entity('matches')
 export class Match {
@@ -12,8 +13,8 @@ export class Match {
   @Column()
   user2Id: string;
 
-  @Column({ default: 'pending' })
-  status: string; // pending, accepted, rejected
+  @Column({ type: 'text', default: MatchStatus.PENDING })
+  status: MatchStatus;
 
   @CreateDateColumn()
   createdAt: Date;

@@ -10,7 +10,7 @@ import { Message } from '../messages/entities/message.entity';
       type: 'sqlite',
       database: 'dating.db',
       entities: [User, Match, Message],
-      synchronize: true, // Auto-create database schema (disable in production)
+      synchronize: process.env.NODE_ENV !== 'production', // Only auto-sync in development
       logging: false,
     }),
   ],

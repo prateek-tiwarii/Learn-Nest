@@ -1,7 +1,7 @@
-import { IsString, IsIn } from 'class-validator';
+import { IsEnum } from 'class-validator';
+import { MatchStatus } from '../enums/match-status.enum';
 
 export class UpdateMatchDto {
-  @IsString()
-  @IsIn(['pending', 'accepted', 'rejected'])
-  status: string;
+  @IsEnum(MatchStatus)
+  status: MatchStatus;
 }

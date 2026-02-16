@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString, IsIn } from 'class-validator';
+import { IsNotEmpty, IsString, IsEnum, IsOptional } from 'class-validator';
+import { MatchStatus } from '../enums/match-status.enum';
 
 export class CreateMatchDto {
   @IsString()
@@ -9,7 +10,7 @@ export class CreateMatchDto {
   @IsNotEmpty()
   user2Id: string;
 
-  @IsString()
-  @IsIn(['pending', 'accepted', 'rejected'])
-  status?: string;
+  @IsEnum(MatchStatus)
+  @IsOptional()
+  status?: MatchStatus;
 }

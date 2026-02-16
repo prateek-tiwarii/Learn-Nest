@@ -5,6 +5,7 @@ import { Match } from './entities/match.entity';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { UsersService } from '../users/users.service';
+import { MatchStatus } from './enums/match-status.enum';
 
 @Injectable()
 export class MatchesService {
@@ -38,7 +39,7 @@ export class MatchesService {
 
     const match = this.matchesRepository.create({
       ...createMatchDto,
-      status: createMatchDto.status || 'pending',
+      status: createMatchDto.status || MatchStatus.PENDING,
     });
     
     return this.matchesRepository.save(match);

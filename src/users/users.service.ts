@@ -64,8 +64,8 @@ export class UsersService {
   }
 
   async search(query: string): Promise<User[]> {
-    // Escape special LIKE characters to prevent pattern injection
-    const escapedQuery = query.replace(/[%_]/g, '\\$&');
+    // Escape special LIKE characters and backslashes to prevent pattern injection
+    const escapedQuery = query.replace(/[\\_]/g, '\\$&').replace(/%/g, '\\%');
     
     return this.usersRepository
       .createQueryBuilder('user')
